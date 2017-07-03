@@ -1,0 +1,6 @@
+<div>
+    <div class="hidden-letter text" ng-if="!isRevealed">_</div>
+    <div class="revealed text" ng-if="isRevealed" ng-class="{'white-space' : isWhiteSpace}"
+            >{{letterObj.val}}
+    </div>
+</div>

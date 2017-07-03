@@ -1,0 +1,37 @@
+<div ng-repeat="key in keys" >
+    <button
+            ng-class=" { 'btn-primary': !wasSelected(key),'btn-default': wasSelected(key)  } "
+            ng-click="onKeyClick(key)"
+            class="btn btn-lg">
+        {{key}}
+    </button>
+</div>
+
+<!--
+<div ng-repeat="key in keys | limitTo:10 " >
+    <button
+            ng-class="{ 'btn-primary': !wasSelected(key),'btn-default': wasSelected(key) } "
+            ng-click="onKeyClick(key)"
+            class="btn btn-lg">
+        {{key}}
+    </button>
+</div>
+
+<div ng-repeat="key in keys | limitTo:-16 | limitTo: 9" >
+    <button
+            ng-class="{ 'btn-primary': !wasSelected(key),'btn-default': wasSelected(key) } "
+            ng-click="onKeyClick(key)"
+            class="btn btn-lg">
+        {{key}}
+    </button>
+</div>
+
+<div ng-repeat="key in keys | limitTo:-7 | limitTo:7 " >
+    <button
+            ng-class="{ 'btn-primary': !wasSelected(key),'btn-default': wasSelected(key) }  "
+            ng-click="onKeyClick(key)"
+            class="btn btn-lg">
+        {{key}}
+    </button>
+</div>
+-->

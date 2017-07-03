@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="hangmanAppInternal">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+
+        .first {
+            width: 100px;
+            height: 100px;
+            background: green;
+            -webkit-transition: all 1.5s;
+            transition: all 1.5s;
+
+            position: absolute;
+            top: 100px;
+            left: 100px
+        }
+
+        .second {
+            width: 100px;
+            height: 100px;
+            background: green;
+            /*background: red;*/
+            -webkit-transition: all 1.5s;
+            transition: all 1.5s;
+
+            position: absolute;
+            top: 700px;
+            left: 300px;
+            -webkit-transform: rotate(180deg);
+        }
+
+        .third {
+            width: 100px;
+            height: 100px;
+            background: green;
+            /*background: red;*/
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+
+            position: absolute;
+            top: 650px;
+            left: 400px;
+            -webkit-transform: rotate(270deg);
+            transition-delay: 1.5s;
+        }
+
+        .fourth {
+            width: 100px;
+            height: 100px;
+            background: green;
+            /*background: red;*/
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+
+            position: absolute;
+            top: 700px;
+            left: 500px;
+            -webkit-transform: rotate(359deg);
+            transition-delay: 1.5s;
+        }
+
+
+    </style>
+
+
+</head>
+
+<body>
+
+<button>click me</button>
+<div class="first"></div>
+
+<script>
+    var i = 0;
+    (function () {
+//        console.log("00");
+        document.querySelector('button').addEventListener('click', function () {
+//            console.log("1");
+            var div = document.querySelector('div');
+            div.classList.toggle("first");
+            div.classList.toggle("second");
+
+
+//            div.one('webkitAnimationEnd onanimationend animationend', function(){
+//            div.one('webkitTransitionEnd ontransitionend transitionend', function(){
+//                div.classList.toggle("second");
+//                div.classList.toggle("third");
+//
+//            })
+
+
+            div.addEventListener('webkitTransitionEnd', function () {
+                console.log('xxx');
+
+                console.log(i);
+                if (i == 0) {
+                    div.classList.toggle("second");
+                    div.classList.toggle("third");
+                    i++;
+                }
+
+                if (i == 1) {
+                    div.classList.toggle("third");
+                    div.classList.toggle("fourth");
+                    i++;
+                }
+
+
+            });
+
+
+//            return;
+//            setTimeout(function(){
+//                div.classList.toggle("second");
+//                div.classList.toggle("third");
+//            },1500);
+//
+//
+//            setTimeout(function(){
+//                div.classList.toggle("third");
+//                div.classList.toggle("fourth");
+////
+//            },3000);
+//
+
+
+        });
+
+
+    })()
+
+</script>
+
+<script src="../scripts/jquery-2.1.3.js"/>
+</body>
+</html>

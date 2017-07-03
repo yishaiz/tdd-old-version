@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="hangmanAppInternal">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+
+    <script type="text/javascript" src="./scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="./scripts/angular.js"></script>
+
+    <script type="text/javascript" src="app/app.js"></script>
+
+    <script type="text/javascript" src="app/services/game.js"></script>
+    <script type="text/javascript" src="app/controllers/main.ctrl.js"></script>
+    <script type="text/javascript" src="app/directives/keyboard.directive.js"></script>
+    <script type="text/javascript" src="app/directives/letter.directive.js"></script>
+    <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Content/hangman/hangman.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+
+<div class="page-content hangman" ng-controller="MainController as main" ng-init="init()">
+
+
+    <div class="content-wrapper" ng-if="main.game">
+
+
+        <h1 class="title text-horizontal-center">Hangman</h1>
+
+
+        <h3 class="title text-horizontal-center">If you don't do TDD, you will be hanged here !</h3>
+
+        <section class="top text-horizontal-center">
+            <section class="hangman-draw">
+                <div class="hangman-svg" ng-include="'app/views/hangman.svg.html'"></div>
+            </section>
+
+            <section class="word text-horizontal-center">
+                <letter ng-repeat="letter in main.game.getPhrase()" value="letter"></letter>
+            </section>
+
+        </section>
+
+        <section class="word text-horizontal-center">
+            <h2 class="word text-horizontal-center">
+
+                {{main.game.getRevealedWord ()}}
+            </h2>
+        </section>
+
+
+        <section class="bottom">
+            <section class="abc text-horizontal-center">
+
+                <hr>
+                <div class="keyboard clearfix">
+                    <keyboard keys="main.game.charactersInLanguageForUI"
+                              was-selected="main.game.isSelectedLetter"></keyboard>
+                </div>
+
+            </section>
+
+            <section class="stats text-horizontal-center text-primary">
+                <div class="strikes text-horizontal-center">
+                    <span class="active-strikes">{{main.game.strikes}}</span> /
+                    <span class="total-strikes">{{main.game.MAX_STRIKES}}</span>
+                </div>
+            </section>
+        </section>
+
+
+        <section class="stats text-horizontal-center">
+            <div overlay="gameOverOverlay" ng-if="main.game.state != main.game.GameState.playing">
+                <h2 ng-if="main.game.state == main.game.GameState.lost" class="overlay-title">game over</h2>
+
+
+                <h2 ng-if="main.game.state == main.game.GameState.won" class="overlay-title-won">you won ! </h2>
+
+                <p>
+                    <span class="play-again-btn btn btn-primary" ng-click="init()">Play again</span>
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    (function () {
+        var alreadyFinished = false;
+
+        $(document).click(function () {
+
+            if (alreadyFinished == true) {
+                return;
+            }
+
+            setTimeout(function () {
+
+                clearTimeout();
+
+                var strikes = document.querySelector(".active-strikes");
+
+                if (strikes.innerText == "8") {
+                    alreadyFinished = true;
+                    fallHead();
+                }
+
+                var won = document.querySelector(".overlay-title-won");
+               if(won!=null){
+                   happyHead();
+               }
+
+            }, 100);
+
+        });
+    })()
+
+function fallHead() {
+    console.log("1");
+
+    var head = document.querySelector('#theHead');
+
+    head.classList.toggle("head-first");
+    head.classList.toggle("head-second");
+
+
+    setTimeout(function () {
+        head.classList.toggle("head-second");
+        head.classList.toggle("head-third");
+
+    }, 900);
+
+    setTimeout(function () {
+        head.classList.toggle("head-third");
+        head.classList.toggle("head-fourth");
+
+    }, 1300);
+
+}
+
+function happyHead(){
+    var head = document.querySelector('#theHead');
+
+    head.classList.add("happy-head");
+}
+
+
+
+</script>
+
+
+</body>
+</html>

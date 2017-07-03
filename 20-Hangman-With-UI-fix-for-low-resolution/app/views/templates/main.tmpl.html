@@ -1,0 +1,33 @@
+<!--<div class="page-content" ng-controller="MainController as main">-->
+    <!--<div class="content-wrapper" ng-if="main.game">-->
+        <!--<h1 class="title text-horizontal-center">{{'title' | translate}}</h1>-->
+        <!--<scetion class="top">-->
+            <!--<div class="category">{{'category' | translate}}</div>-->
+            <!--<select class="category-select" ng-change="main.onCategoryChanged()" ng-model="main.category" ng-options="'categories_' + category | translate for category in main.categories track by category"></select>-->
+            <!--<section class="hangman-draw">-->
+                <!--<div class="hangman-svg" ng-include="'views/hangman.svg.preload.html'"></div>-->
+            <!--</section>-->
+            <!--<section class="word text-horizontal-center">-->
+                <!--<letter ng-repeat="letter in main.game.getPhrase()" value="letter"></letter>-->
+            <!--</section>-->
+        <!--</scetion>-->
+        <!--<section class="bottom">-->
+            <!--<section class="abc text-horizontal-center">-->
+                <!--<div class="char" ng-class="{'guessed-char': main.game.alreadyGuessed(char) %>" ng-click="main.game.revealLetter(char)" ng-repeat="char in main.game.abc">{{char}}</div>-->
+            <!--</section>-->
+            <!--<section class="actions"></section>-->
+            <!--<section class="stats">-->
+                <!--<div class="strikes">-->
+                    <!--<span class="active-strikes">< {{main.game.strikes}}</span>-->
+                    <!--<span class="total-strikes">> {{'/' + main.maxStrikes}}</span>-->
+                <!--</div>-->
+            <!--</section>-->
+        <!--</section>-->
+        <!--<div overlay="gameOverOverlay">-->
+            <!--<h4 class="overlay-title" translate="game_over" translate-values="{status: main.game.state}"></h4>-->
+            <!--<p bubble="true" target="gameOverOverlay" toggle="off">-->
+                <!--<span class="play-again-btn btn btn-primary" ng-click="main.createNewGame()">{{'play_again' | translate}}</span>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
